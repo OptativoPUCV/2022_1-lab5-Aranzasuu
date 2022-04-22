@@ -53,6 +53,8 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
       aux = aux -> left;
     }
     if(aux == NULL){
+      
+    }
   }
 }
 
