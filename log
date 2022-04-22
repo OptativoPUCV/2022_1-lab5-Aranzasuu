@@ -1,0 +1,25 @@
+Fri Apr 22 15:25:40 UTC 2022: 
+ treemap.c | 33 +++++++++++++++++----------------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘createTreeMap’:
+treemap.c:44:20: error: implicit declaration of function ‘lower_than_string’; did you mean ‘lower_than’? [-Werror=implicit-function-declaration]
+  New->lower_than = lower_than_string(key1, key2);
+                    ^~~~~~~~~~~~~~~~~
+                    lower_than
+treemap.c:44:38: error: ‘key1’ undeclared (first use in this function); did you mean ‘key_t’?
+  New->lower_than = lower_than_string(key1, key2);
+                                      ^~~~
+                                      key_t
+treemap.c:44:38: note: each undeclared identifier is reported only once for each function it appears in
+treemap.c:44:44: error: ‘key2’ undeclared (first use in this function); did you mean ‘key1’?
+  New->lower_than = lower_than_string(key1, key2);
+                                            ^~~~
+                                            key1
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:49:12: error: unused variable ‘aux’ [-Werror=unused-variable]
+  TreeNode *aux = tree->current;
+            ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+6a46648
