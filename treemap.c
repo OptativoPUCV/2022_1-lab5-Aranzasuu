@@ -74,7 +74,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
-	return NULL;
+	return tree->root;
 }
 
 Pair *nextTreeMap(TreeMap *tree) {
