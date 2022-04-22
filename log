@@ -287,3 +287,17 @@ Fri Apr 22 16:04:07 UTC 2022:
  tests:  13|5
 total_score: 15/70
 70962fc
+Fri Apr 22 16:09:50 UTC 2022: 
+ treemap.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:56:3: error: expected expression before ‘}’ token
+   }
+   ^
+treemap.c:46:13: error: unused variable ‘new’ [-Werror=unused-variable]
+   TreeNode *new = createTreeNode(key,value);
+             ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+ac04964
