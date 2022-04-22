@@ -143,3 +143,20 @@ treemap.c:74:13: error: implicit declaration of function ‘lower_than_string’
 cc1: all warnings being treated as errors
 Compilation failed
 e57152b
+Fri Apr 22 15:46:14 UTC 2022: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:71:8: error: too few arguments to function ‘is_equal’
+     if(is_equal(aux->pair->key,key)){
+        ^~~~~~~~
+treemap.c:21:5: note: declared here
+ int is_equal(TreeMap *tree, void *key1, void *key2) {
+     ^~~~~~~~
+treemap.c:74:13: error: implicit declaration of function ‘lower_than’ [-Werror=implicit-function-declaration]
+     else if(lower_than(aux->pair->key, key) == 1){
+             ^~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+c9d102e
