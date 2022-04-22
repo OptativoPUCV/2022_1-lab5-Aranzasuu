@@ -52,7 +52,7 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
     else{
       aux = aux -> left;
     }
-    if(aux == NULL)
+    if(aux == NULL){
   }
 }
 
