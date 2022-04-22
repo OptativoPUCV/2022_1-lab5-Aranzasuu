@@ -107,3 +107,22 @@ Fri Apr 22 15:38:01 UTC 2022:
  tests:  6|6
 total_score: 5/70
 fff9497
+Fri Apr 22 15:45:47 UTC 2022: 
+ treemap.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:71:8: error: too few arguments to function ‘is_equal’
+     if(is_equal(aux->pair->key,key){
+        ^~~~~~~~
+treemap.c:21:5: note: declared here
+ int is_equal(TreeMap *tree, void *key1, void *key2) {
+     ^~~~~~~~
+treemap.c:71:36: error: expected ‘)’ before ‘{’ token
+     if(is_equal(aux->pair->key,key){
+                                    ^
+treemap.c:80:3: error: expected expression before ‘}’ token
+   }
+   ^
+Compilation failed
+43a2538
