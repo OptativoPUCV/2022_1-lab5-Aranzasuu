@@ -44,3 +44,19 @@ treemap.c:49:12: error: unused variable ‘aux’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 a647209
+Fri Apr 22 15:26:07 UTC 2022: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘createTreeMap’:
+treemap.c:44:31: error: ‘key1’ undeclared (first use in this function); did you mean ‘key_t’?
+  New->lower_than = lower_than(key1, key2);
+                               ^~~~
+                               key_t
+treemap.c:44:31: note: each undeclared identifier is reported only once for each function it appears in
+treemap.c:44:37: error: ‘key2’ undeclared (first use in this function); did you mean ‘key1’?
+  New->lower_than = lower_than(key1, key2);
+                                     ^~~~
+                                     key1
+Compilation failed
+caf1acc
