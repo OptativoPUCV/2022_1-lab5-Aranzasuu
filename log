@@ -340,3 +340,17 @@ Sat Apr 23 20:50:38 UTC 2022:
  tests:  13|5
 total_score: 15/70
 50a1add
+Sat Apr 23 21:32:36 UTC 2022: 
+ treemap.c | 16 +++++-----------
+ 1 file changed, 5 insertions(+), 11 deletions(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:47:12: error: unused variable ‘aux’ [-Werror=unused-variable]
+  TreeNode *aux = tree->current;
+            ^~~
+treemap.c:46:13: error: unused variable ‘new’ [-Werror=unused-variable]
+   TreeNode *new = createTreeNode(key,value);
+             ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+55f4300
