@@ -43,7 +43,7 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 }
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
-  TreeNode *new = createTreeNode(key,value);
+  //TreeNode *new = createTreeNode(key,value);
 	TreeNode *aux = tree->current;
   
 }
