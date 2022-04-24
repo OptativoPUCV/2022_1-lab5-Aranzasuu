@@ -78,7 +78,6 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
       aux = aux->right;
     }
   }
-  
 }
 
 TreeNode *minimum(TreeNode *x) {
@@ -88,6 +87,17 @@ TreeNode *minimum(TreeNode *x) {
 }
 
 void removeNode(TreeMap *tree, TreeNode *node) {
+
+  if(node->right == NULL && node->left == NULL){
+    if(node == tree->root){
+      tree->root = NULL;
+      tree->current = NULL;
+    }
+    else{
+      
+        
+    }
+  }
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
@@ -126,5 +136,34 @@ Pair *firstTreeMap(TreeMap *tree) {
 }
 
 Pair *nextTreeMap(TreeMap *tree) {
+  TreeNode *nextNode;
+  TreeNode *aux = tree->current;
+  //si tiene hijo derecho
+  if(aux->right != NULL){
+    //clave mínima
+    nextNode = minimum(aux->right);
+    tree->current = nextNode;
+    return nextNode->pair;
+  }
+  else{
+    //si el current es la raíz
+    if(aux->parent == NULL){
+      tree->current = NULL;
+      return NULL;
+    }
+    //current está en el subárbol izquierdo
+    if(aux->parent->left == aux){
+      tree->current = tree->current->parent;
+      return tree->current->pair;
+    }
+    else{
+      //encontrar el 1° ancestro mayor al current
+      while(aux->parent != NULL && tree->lower_than(aux->pair->key, aux->parent->pair->key) != 1){
+        aux = aux->parent;
+      }
+      tree->current = aux;
+      return aux->pair;
+    }
+  }
 	return NULL;
 }
