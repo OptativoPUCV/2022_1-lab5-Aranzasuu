@@ -235,7 +235,7 @@ Pair *firstTreeMap(TreeMap *tree) {
 Pair *nextTreeMap(TreeMap *tree) {
     TreeNode *nextNode;
 
-    if(tree->current == NULL) return NULL;
+    if(tree->current->right == NULL) return NULL;
   
     //si tiene hijo derecho
     if(tree->current->right != NULL){
