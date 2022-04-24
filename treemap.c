@@ -233,5 +233,6 @@ Pair *nextTreeMap(TreeMap *tree) {
     }
 
     tree->current = nextNode;
+    if(nextNode == NULL) return NULL;
     return nextNode->pair;
 }
