@@ -163,11 +163,13 @@ void removeNode(TreeMap *tree, TreeNode *node) {
         }
     }
 
-    // nodo con más hijos
+    // nodo con más hijos, la función es recursiva
     else{
-        // se busca la mayor clave subárbol izquierdo
-        printf("si\n");
+        TreeNode *auxNode = minimum(node->right);
+        node->pair=auxNode->pair;
+        removeNode(tree, node->pair);
     }
+    free(node);
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
