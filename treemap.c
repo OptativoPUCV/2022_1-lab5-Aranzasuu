@@ -200,10 +200,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
     Pair *existe = searchTreeMap(tree,key);
     TreeNode *node;
     
-    if(existe != NULL){
-        printf("     si existe\n");
-        return existe;
-    }
+    if(existe != NULL) return existe;
 
     else{
         tree->current = tree->root;
@@ -215,6 +212,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
             }
             else
             {
+                printf("   mayor\n");
                 if(tree->current->right == NULL) break;
                 tree->current = tree->current->right;
             }
