@@ -198,10 +198,11 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 Pair *upperBound(TreeMap *tree, void *key) {
     //buscar la clave, si no está, buscar el mayor
     Pair *upNode = searchTreeMap(tree,key);
+    
     if(upNode != NULL) return upNode;
 
     else{
-        while(tree->lower_than(upNode->key,key)!= 1){
+        while(tree->lower_than(upNode->key,key) == 1){
             upNode = nextTreeMap(tree);
         }
     }
