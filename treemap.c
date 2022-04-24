@@ -208,40 +208,30 @@ Pair *firstTreeMap(TreeMap *tree) {
 }
 
 Pair *nextTreeMap(TreeMap *tree) {
-  TreeNode *nextNode;
+    TreeNode *nextNode;
 
-  if(tree->current == NULL) return NULL;
+    if(tree->current == NULL) return NULL;
   
-  //si tiene hijo derecho
-  if(tree->current->right != NULL){
-    //clave mínima
-    nextNode = minimum(tree->current->right);
-    tree->current = nextNode;
-    if(nextNode == NULL) return NULL;
-    return nextNode->pair;
-  }
-    
-  else{
-    //si el current es la raíz
-    if(tree->current->parent == NULL){
-      tree->current = NULL;
-      return NULL;
-    }
-    //current está en el subárbol izquierdo
-    if(tree->current->parent->left == tree->current){
-      tree->current = tree->current->parent;
-      if(tree->current == NULL) return NULL;
-      return tree->current->pair;
+    //si tiene hijo derecho
+    if(tree->current->right != NULL){
+        //clave mínima
+        nextNode = minimum(tree->current->right);
     }
     else{
-      //encontrar el 1° ancestro mayor al current
-      while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
-        tree->current = tree->current->parent;
-      }
-      tree->current = tree->current;
-      if(tree->current == NULL) return NULL;
-      return tree->current->pair;
+        // subárbol izquierdo, se asegura que es menor
+        if(tree->current->parent->left == tree->current){
+            nextNode = tree->current->parent;
+        }
+
+        // subárbol derecho, hay que buscar el primer valor mayor al current
+        else{
+            while(tree->current->parent != NULL && tree->lower_than(tree->current->parent->pair->key, tree->current->pair->key) != 1){
+                tree->current = tree->current->parent;
+            }
+            nextNode = tree->current->parent;
+        }
     }
-  }
-	return NULL;
+
+    tree->current = nextNode;
+    return nextNode->pair;
 }
