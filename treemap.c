@@ -137,35 +137,34 @@ Pair *firstTreeMap(TreeMap *tree) {
 
 Pair *nextTreeMap(TreeMap *tree) {
   TreeNode *nextNode;
-  TreeNode *aux = tree->current;
   //si tiene hijo derecho
-  if(aux->right != NULL){
+  if(tree->current->right != NULL){
     //clave mínima
-    nextNode = minimum(aux->right);
+    nextNode = minimum(tree->current->right);
     tree->current = nextNode;
     if(nextNode == NULL) return NULL;
     return nextNode->pair;
   }
   else{
     //si el current es la raíz
-    if(aux->parent == NULL){
+    if(tree->current->parent == NULL){
       tree->current = NULL;
       return NULL;
     }
     //current está en el subárbol izquierdo
-    if(aux->parent->left == aux){
+    if(tree->current->parent->left == tree->current){
       tree->current = tree->current->parent;
       if(tree->current == NULL) return NULL;
       return tree->current->pair;
     }
     else{
       //encontrar el 1° ancestro mayor al current
-      while(aux->parent != NULL && tree->lower_than(aux->pair->key, aux->parent->pair->key) != 1){
-        aux = aux->parent;
+      while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
+        tree->current = tree->current->parent;
       }
-      tree->current = aux;
+      tree->current = tree->current;
       if(tree->current == NULL) return NULL;
-      return aux->pair;
+      return tree->current->pair;
     }
   }
 	return NULL;
