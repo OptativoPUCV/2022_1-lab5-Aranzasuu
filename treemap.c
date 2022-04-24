@@ -167,9 +167,8 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     else{
         TreeNode *auxNode = minimum(node->right);
         node->pair=auxNode->pair;
-        removeNode(tree, minimum(node->right));
+        removeNode(tree, node);
     }
-    free(node);
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
