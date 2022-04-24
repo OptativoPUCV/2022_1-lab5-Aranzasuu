@@ -212,13 +212,13 @@ Pair *upperBound(TreeMap *tree, void *key) {
             }
             else
             {
-                printf("   mayor\n");
                 if(tree->current->right == NULL) break;
                 tree->current = tree->current->right;
             }
         }
     }
-  return node->pair;
+    printf("   mayor\n");
+    return node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
