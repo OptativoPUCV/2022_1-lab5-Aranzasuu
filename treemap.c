@@ -198,7 +198,7 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 Pair *upperBound(TreeMap *tree, void *key) {
     //buscar la clave, si no está, buscar el mayor
     Pair *existe = searchTreeMap(tree,key);
-    TreeNode *node;
+    TreeNode *node = NULL;
     
     if(existe != NULL) return existe;
 
