@@ -222,7 +222,7 @@ Pair *nextTreeMap(TreeMap *tree) {
     else{
 
         //si es la raíz
-        if(tree->current->parent == NULL) return NULL;
+        if(tree->current->parent == NULL) nextNode = NULL;
         
         // subárbol izquierdo, se asegura que es menor
         if(tree->current->parent->left == tree->current){
