@@ -217,7 +217,13 @@ Pair *nextTreeMap(TreeMap *tree) {
         //clave mínima
         nextNode = minimum(tree->current->right);
     }
+
+    //no tiene hijo derecho
     else{
+
+        //si es la raíz
+        if(tree->current->parent == NULL) return NULL;
+        
         // subárbol izquierdo, se asegura que es menor
         if(tree->current->parent->left == tree->current){
             nextNode = tree->current->parent;
