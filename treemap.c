@@ -225,7 +225,7 @@ Pair *nextTreeMap(TreeMap *tree) {
         if(tree->current->parent == NULL) nextNode = NULL;
         
         // subárbol izquierdo, se asegura que es menor
-        if(tree->current->parent->left == tree->current){
+        else if(tree->current->parent->left == tree->current){
             nextNode = tree->current->parent;
         }
 
