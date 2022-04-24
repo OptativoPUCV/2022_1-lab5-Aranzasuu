@@ -165,9 +165,6 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     // se busca la mayor clave subárbol izquierdo
     
   }
-
-  free(node);
-  return;
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
