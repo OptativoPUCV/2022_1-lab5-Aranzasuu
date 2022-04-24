@@ -151,20 +151,22 @@ Pair *nextTreeMap(TreeMap *tree) {
       tree->current = NULL;
       return NULL;
     }
-    //current está en el subárbol izquierdo
-    else if(tree->current->parent->left == tree->current){
-      tree->current = tree->current->parent;
-      if(tree->current == NULL) return NULL;
-      return tree->current->pair;
-    }
     else{
-      //encontrar el 1° ancestro mayor al current
-      while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
+      //current está en el subárbol izquierdo
+      if(tree->current->parent->left == tree->current){
         tree->current = tree->current->parent;
+        if(tree->current == NULL) return NULL;
+        return tree->current->pair;
       }
-      tree->current = tree->current;
-      if(tree->current == NULL) return NULL;
-      return tree->current->pair;
+      else{
+        //encontrar el 1° ancestro mayor al current
+        while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
+          tree->current = tree->current->parent;
+        }
+        tree->current = tree->current;
+        if(tree->current == NULL) return NULL;
+        return tree->current->pair;
+      }
     }
   }
 	return NULL;
