@@ -497,3 +497,30 @@ Sun Apr 24 03:21:41 UTC 2022:
  tests:  19|3
 total_score: 35/70
 693741f
+Sun Apr 24 04:25:15 UTC 2022: 
+ treemap.c | 80 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 73 insertions(+), 7 deletions(-)
+In file included from test.c:4:0:
+treemap.c:113:3: error: expected identifier or ‘(’ before ‘else’
+   else if(node -> right == NULL || node -> left == NULL){
+   ^~~~
+treemap.c:164:3: error: expected identifier or ‘(’ before ‘else’
+   else{
+   ^~~~
+treemap.c:169:3: error: data definition has no type or storage class [-Werror]
+   free(node);
+   ^~~~
+treemap.c:169:3: error: type defaults to ‘int’ in declaration of ‘free’ [-Werror=implicit-int]
+treemap.c:169:3: error: parameter names (without types) in function declaration [-Werror]
+treemap.c:169:3: error: conflicting types for ‘free’
+In file included from test.c:2:0:
+/usr/include/stdlib.h:563:13: note: previous declaration of ‘free’ was here
+ extern void free (void *__ptr) __THROW;
+             ^~~~
+In file included from test.c:4:0:
+treemap.c:170:1: error: expected identifier or ‘(’ before ‘}’ token
+ }
+ ^
+cc1: all warnings being treated as errors
+Compilation failed
+73a1474

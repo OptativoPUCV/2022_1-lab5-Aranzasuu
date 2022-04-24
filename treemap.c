@@ -45,7 +45,8 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
   TreeNode *new = createTreeNode(key,value);
   TreeNode *aux = tree->current;
-  
+
+  // raíz nula, el nuevo nodo es la raíz
   if(tree->root == NULL){
     tree->root = new;
     return;
@@ -55,9 +56,12 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
   tree->current = aux;
 
   while(aux != NULL){
+    //si el dato ya está, no se ingresa
     if(is_equal(tree,key,aux->pair->key) == 1) return;
-    
-    if(tree->lower_than(key, aux->pair->key) == 1){
+
+    // es menor a la raíz
+    if(tree->lower_than(key, aux->pair->key) == 1){ 
+      // si la posicion es nula, se ingresa
       if(aux->left == NULL){
         aux->left = new;
         new->parent = aux;
@@ -67,6 +71,8 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
       }
       aux = aux->left;
     }
+
+    //subárbol derecho
     else{
       if(aux->right == NULL){
         aux->right = new;
@@ -80,7 +86,7 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
   }
 }
 
-TreeNode *minimum(TreeNode *x) {
+TreeNode *minimum(TreeNode *x){
   while(x -> left != NULL)
     x = x -> left;
 	return x;
@@ -88,16 +94,79 @@ TreeNode *minimum(TreeNode *x) {
 
 void removeNode(TreeMap *tree, TreeNode *node) {
 
+  //caso que el nodo sea la raíz
   if(node->right == NULL && node->left == NULL){
     if(node == tree->root){
       tree->root = NULL;
       tree->current = NULL;
     }
-    else{
-      
-        
+    //subárbol derecho
+    else if(node->parent->right == node)
+      node->parent->right = NULL;
+    //subárbol izquierdo
+    else
+      node->parent->left = NULL;
     }
   }
+
+  // nodo con un hijo
+  else if(node -> right == NULL || node -> left == NULL){
+    
+    // el nodo es la raíz
+    if(node == tree->root){
+
+      // hijo izquierdo
+      if(node->left != NULL){
+        tree->root = node->left;
+        node->left->parent = NULL;
+      }
+      // hijo derecho
+      else{
+        tree->root = node->right;
+        node->right->parent = NULL;
+      }
+    }
+    
+    //subárbol izquierdo
+    else if(node == node->parent->left){
+      
+      //hijo izquierdo
+      if(node->left != NULL){
+        node->left->parent = node->parent;
+        node->parent->left = node->left;
+      }
+        
+      //hijo derecho
+      else{
+        node->right->parent = node->parent;
+        node->parent->right = node->right;
+      }
+    }
+
+    //subárbol derecho
+    else{
+
+      // hijo izquierdo
+      if(node->left != NULL){
+        node->parent->right = node->left;
+        node->left->parent = node->parent;
+      }
+
+      // hijo derecho
+      else{
+        node->parent->right = node->right;
+        node->right->parent = node->parent;
+      }
+    }    
+  }
+
+  // nodo con más hijos
+  else{
+    // se busca la mayor clave subárbol izquierdo
+    
+  }
+
+  free(node);
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
@@ -138,13 +207,10 @@ Pair *firstTreeMap(TreeMap *tree) {
 }
 
 Pair *nextTreeMap(TreeMap *tree) {
-  if (tree->current->right != NULL)
-        tree->current = tree->current->right;
-    tree->current = minimum(tree->current);
-    return tree->current->pair;
-  
-  /*
   TreeNode *nextNode;
+
+  if(tree->current == NULL) return NULL;
+  
   //si tiene hijo derecho
   if(tree->current->right != NULL){
     //clave mínima
@@ -153,6 +219,7 @@ Pair *nextTreeMap(TreeMap *tree) {
     if(nextNode == NULL) return NULL;
     return nextNode->pair;
   }
+    
   else{
     //si el current es la raíz
     if(tree->current->parent == NULL){
@@ -175,5 +242,5 @@ Pair *nextTreeMap(TreeMap *tree) {
       return tree->current->pair;
     }
   }
-	return NULL;*/
+	return NULL;
 }
