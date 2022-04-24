@@ -44,31 +44,31 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
   TreeNode *new = createTreeNode(key,value);
-	TreeNode *aux = tree->current;
   if(tree->root == NULL){
     tree->root = new;
     return;
   }
 
-  while(aux != NULL){
-    if(is_equal(tree,key,aux->pair->key) == 1) return;
-    if(tree->lower_than(key, aux->pair->key) == 1){
-      if(aux->left == NULL){
-        aux->left = new;
-        new->parent = aux;
-        aux = aux->left;
+  while(tree->current != NULL){
+    if(is_equal(tree,key,tree->current->pair->key) == 1) return;
+    
+    if(tree->lower_than(key, tree->current->pair->key) == 1){
+      if(tree->current->left == NULL){
+        tree->current->left = new;
+        new->parent = tree->current;
+        tree->current = tree->current->left;
         return;
       }
-      aux = aux->left;
+      tree->current = tree->current->left;
     }
     else{
-      if(aux->right == NULL){
-        aux->right = new;
-        new->parent = aux;
-        aux = aux->right;
+      if(tree->current->right == NULL){
+        tree->current->right = new;
+        new->parent = tree->current;
+        tree->current = tree->current->right;
         return;
       }
-      aux = aux->right;
+      tree->current = tree->current->right;
     }
   }
 }
