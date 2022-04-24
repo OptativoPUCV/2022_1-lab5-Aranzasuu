@@ -127,13 +127,8 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 
 Pair *upperBound(TreeMap *tree, void *key) {
   //buscar la clave, si no está, buscar el mayor
-  Pair *upNode = searchTreeMap(tree,key);
-  if(upNode != NULL) return upNode;
-  else{
-    while(tree->lower_than(key, tree->current->pair->key) != 1)
-      upNode = nextTreeMap(tree);
-  }
-  return upNode;
+  //Pair *upNode = searchTreeMap(tree,key);
+  return NULL;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
@@ -143,6 +138,12 @@ Pair *firstTreeMap(TreeMap *tree) {
 }
 
 Pair *nextTreeMap(TreeMap *tree) {
+  if (tree->current->right != NULL)
+        tree->current = tree->current->right;
+    tree->current = minimum(tree->current);
+    return tree->current->pair;
+  
+  /*
   TreeNode *nextNode;
   //si tiene hijo derecho
   if(tree->current->right != NULL){
@@ -174,5 +175,5 @@ Pair *nextTreeMap(TreeMap *tree) {
       return tree->current->pair;
     }
   }
-	return NULL;
+	return NULL;*/
 }
