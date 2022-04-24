@@ -130,11 +130,8 @@ Pair *upperBound(TreeMap *tree, void *key) {
   Pair *upNode = searchTreeMap(tree,key);
   if(upNode != NULL) return upNode;
   else{
-    if(tree->lower_than(key, tree->current->pair->key)){
-      printf("valor = %p",&(tree->current->pair->key));
-      return tree->current->pair;
-    }
-    upNode = nextTreeMap(tree);
+    while(tree->lower_than(key, tree->current->pair->key) != 1)
+      upNode = nextTreeMap(tree);
   }
   return upNode;
 }
