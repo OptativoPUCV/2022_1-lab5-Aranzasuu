@@ -256,7 +256,7 @@ Pair *nextTreeMap(TreeMap *tree) {
 
         // subárbol derecho, hay que buscar el primer valor mayor al current
         else{
-            while(tree->current->parent != NULL && tree->lower_than(tree->current->parent->pair->key, tree->current->pair->key) != 1){
+            while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
                 tree->current = tree->current->parent;
             }
             nextNode = tree->current->parent;
