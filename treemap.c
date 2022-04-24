@@ -126,7 +126,16 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 }
 
 Pair *upperBound(TreeMap *tree, void *key) {
-	return NULL;
+  //buscar la clave, si no está, buscar el mayor
+  Pair *upNode = searchTreeMap(tree,key);
+  if(upNode != NULL) return upNode;
+  else{
+    if(tree->lower_than(key, tree->current->pair->key)){
+      return tree->current->pair;
+    }
+    upNode = nextTreeMap(tree);
+  }
+  return upNode;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
@@ -151,22 +160,20 @@ Pair *nextTreeMap(TreeMap *tree) {
       tree->current = NULL;
       return NULL;
     }
+    //current está en el subárbol izquierdo
+    if(tree->current->parent->left == tree->current){
+      tree->current = tree->current->parent;
+      if(tree->current == NULL) return NULL;
+      return tree->current->pair;
+    }
     else{
-      //current está en el subárbol izquierdo
-      if(tree->current->parent->left == tree->current){
+      //encontrar el 1° ancestro mayor al current
+      while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
         tree->current = tree->current->parent;
-        if(tree->current == NULL) return NULL;
-        return tree->current->pair;
       }
-      else{
-        //encontrar el 1° ancestro mayor al current
-        while(tree->current->parent != NULL && tree->lower_than(tree->current->pair->key, tree->current->parent->pair->key) != 1){
-          tree->current = tree->current->parent;
-        }
-        tree->current = tree->current;
-        if(tree->current == NULL) return NULL;
-        return tree->current->pair;
-      }
+      tree->current = tree->current;
+      if(tree->current == NULL) return NULL;
+      return tree->current->pair;
     }
   }
 	return NULL;
