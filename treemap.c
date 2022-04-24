@@ -125,7 +125,6 @@ void removeNode(TreeMap *tree, TreeNode *node) {
         tree->root = node->right;
         node->right->parent = NULL;
       }
-    }
     
     //subárbol izquierdo
     else if(node == node->parent->left){
