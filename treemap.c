@@ -197,17 +197,28 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 
 Pair *upperBound(TreeMap *tree, void *key) {
     //buscar la clave, si no está, buscar el mayor
-    Pair *upNode = searchTreeMap(tree,key);
+    Pair *existe = searchTreeMap(tree,key);
+    TreeNode *node;
     
-    if(upNode != NULL) return upNode;
+    if(existe != NULL) return existe;
 
     else{
-        while(tree->lower_than(upNode->key,key) == 1){
-            upNode = nextTreeMap(tree);
+        tree->current = tree->root;
+        while(tree->current != NULL){
+            if (tree->lower_than(key, tree->current->pair->key) == 1 ){
+                node = tree->current;
+                if(tree->current->left == NULL) break;
+                tree->current = tree->current->left;
+            }
+            else
+            {
+                if(tree->current->right == NULL) break;
+                tree->current = tree->current->right;
+
+            }
         }
     }
-    
-  return upNode;
+  return node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
