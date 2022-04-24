@@ -198,16 +198,18 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 }
 
 Pair *upperBound(TreeMap *tree, void *key) {
-    //buscar la clave, si no está, buscar el mayor
+    //buscar la clave y si existe, se retorna
     Pair *existe = searchTreeMap(tree,key);
     TreeNode *node = NULL;
     
     if(existe != NULL) return existe;
 
+    //en caso que no exista, se busca el primer ancestro mayor al key
     else{
         tree->current = tree->root;
         while(tree->current != NULL){
-            if (tree->lower_than(key, tree->current->pair->key) == 1 ){
+            //revisamos que el key sea menor que el current
+            if (tree->lower_than(key, tree->current->pair->key) == 1){
                 node = tree->current;
                 if(tree->current->left == NULL) break;
                 tree->current = tree->current->left;
