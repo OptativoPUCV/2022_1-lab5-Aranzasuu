@@ -616,3 +616,13 @@ treemap.c:128:5: error: expected ‘}’ before ‘else’
      ^~~~
 Compilation failed
 ed3215c
+Sun Apr 24 04:31:02 UTC 2022: 
+ treemap.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+In file included from test.c:4:0:
+treemap.c: In function ‘removeNode’:
+treemap.c:161:3: error: expected ‘}’ before ‘else’
+   else{
+   ^~~~
+Compilation failed
+66769ee
