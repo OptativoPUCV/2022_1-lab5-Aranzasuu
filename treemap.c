@@ -167,7 +167,7 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     else{
         TreeNode *auxNode = minimum(node->right);
         node->pair=auxNode->pair;
-        removeNode(tree, node);
+        removeNode(tree, minimum(node));
     }
     free(node);
 }
