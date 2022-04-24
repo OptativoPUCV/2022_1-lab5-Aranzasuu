@@ -131,6 +131,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
   if(upNode != NULL) return upNode;
   else{
     if(tree->lower_than(key, tree->current->pair->key)){
+      printf("%s",tree->current->pair->key);
       return tree->current->pair;
     }
     upNode = nextTreeMap(tree);

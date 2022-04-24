@@ -449,3 +449,15 @@ Sun Apr 24 03:07:55 UTC 2022:
  tests:  23|3
 total_score: 40/70
 c362a14
+Sun Apr 24 03:09:34 UTC 2022: 
+ treemap.c | 1 +
+ 1 file changed, 1 insertion(+)
+In file included from test.c:4:0:
+treemap.c: In function ‘upperBound’:
+treemap.c:134:16: error: format ‘%s’ expects argument of type ‘char *’, but argument 2 has type ‘void *’ [-Werror=format=]
+       printf("%s",tree->current->pair->key);
+               ~^  ~~~~~~~~~~~~~~~~~~~~~~~~
+               %p
+cc1: all warnings being treated as errors
+Compilation failed
+4e7a93d
