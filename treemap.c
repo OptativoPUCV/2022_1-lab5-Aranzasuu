@@ -143,6 +143,7 @@ Pair *nextTreeMap(TreeMap *tree) {
     //clave mínima
     nextNode = minimum(aux->right);
     tree->current = nextNode;
+    if(nextNode == NULL) return NULL;
     return nextNode->pair;
   }
   else{
@@ -154,6 +155,7 @@ Pair *nextTreeMap(TreeMap *tree) {
     //current está en el subárbol izquierdo
     if(aux->parent->left == aux){
       tree->current = tree->current->parent;
+      if(tree->current == NULL) return NULL;
       return tree->current->pair;
     }
     else{
@@ -162,6 +164,7 @@ Pair *nextTreeMap(TreeMap *tree) {
         aux = aux->parent;
       }
       tree->current = aux;
+      if(tree->current == NULL) return NULL;
       return aux->pair;
     }
   }
