@@ -195,30 +195,39 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 	return NULL;
 }
 
-Pair *upperBound(TreeMap *tree, void *key) {
-    //buscar la clave, si no está, buscar el mayor
-    Pair *existe = searchTreeMap(tree,key);
-    TreeNode *node;
-    
-    if(existe != NULL) return existe;
+Pair * upperBound(TreeMap * tree, void* key) {
+    TreeNode * ub_node;
+    tree->current = tree->root;
 
-    else{
-        tree->current = tree->root;
-        while(tree->current != NULL){
-            if (tree->lower_than(key, tree->current->pair->key) == 1 ){
-                node = tree->current;
-                if(tree->current->left == NULL) break;
-                tree->current = tree->current->left;
-            }
-            else
+    ub_node = NULL;
+
+    while (tree->current != NULL)
+    {
+        if (is_equal(tree, key, tree->current->pair->key) == 1)
+        {
+            ub_node = tree->current;
+            break;
+        }
+        else if (tree->lower_than(key, tree->current->pair->key) == 1 )
+        {
+            ub_node = tree->current;
+            if(tree->current->left == NULL)
             {
-                if(tree->current->right == NULL) break;
-                tree->current = tree->current->right;
+                break;
             }
+            tree->current = tree->current->left;
+        }
+        else
+        {
+            if(tree->current->right == NULL) break;
+            tree->current = tree->current->right;
+
         }
     }
-    printf("   mayor\n");
-    return node->pair;
+
+    if (ub_node == NULL)
+        return NULL;
+    return ub_node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
