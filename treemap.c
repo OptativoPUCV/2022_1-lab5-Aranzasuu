@@ -204,7 +204,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
     
     if(existe != NULL) return existe;
 
-    //en caso que no exista, se busca el primer ancestro mayor al key
+    //en caso que no exista, se busca el primer anscestro mayor al key
     else{
         tree->current = tree->root;
         while(tree->current != NULL){
