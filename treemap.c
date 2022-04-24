@@ -163,7 +163,7 @@ void removeNode(TreeMap *tree, TreeNode *node) {
   // nodo con más hijos
   else{
     // se busca la mayor clave subárbol izquierdo
-    
+    printf("si");
   }
 }
 
