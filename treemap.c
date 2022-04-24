@@ -152,7 +152,7 @@ Pair *nextTreeMap(TreeMap *tree) {
       return NULL;
     }
     //current está en el subárbol izquierdo
-    if(tree->current->parent->left == tree->current){
+    else if(tree->current->parent->left == tree->current){
       tree->current = tree->current->parent;
       if(tree->current == NULL) return NULL;
       return tree->current->pair;
